@@ -1,15 +1,25 @@
 import axios from 'axios'
 
-const API_KEY = '577c0d5cbee6e70db8a2cf16dfac7b8e'
-const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`
+export const FETCH_POSTS = 'fetch_posts'
+export const CREATE_POST = 'create_post'
 
-export const FETCH_WEATHER = 'FETCH_WEATHER'
+const ROOT_URL = 'http://reduxblog.herokuapp.com/api'
+const API_KEY = '?key=PAPERCLIP1234'
 
-export function fetchWeather(city) {
-    const url = `${ROOT_URL}&q=${city},us`
+export function fetchPosts() {
+    const request = axios.get(`${ROOT_URL}/posts${API_KEY}`)
 
     return {
-        type: FETCH_WEATHER,
-        payload: axios.get(url)
+        type: FETCH_POSTS,
+        payload: request
+    }
+}
+
+export function createPost(data) {
+    const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, data)
+
+    return {
+        type: CREATE_POST,
+        payload: request
     }
 }
