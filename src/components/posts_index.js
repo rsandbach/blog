@@ -12,7 +12,9 @@ class PostsIndex extends React.Component {
         return _.map(this.props.posts, post => {
             return (
                 <li className="list-group-item" key={post.id}>
-                    {post.title}
+                    <Link to={`/posts/${post.id}`}>
+                        {post.title} <span className="badge badge-secondary">{post.categories}</span>
+                    </Link>
                 </li>
             )
         })
@@ -25,7 +27,7 @@ class PostsIndex extends React.Component {
                     <Link className="btn btn-primary" to="/posts/new">
                         Add Post
                     </Link>
-                 </div>
+                </div>
                 <h3>Posts</h3>
                 <ul className="list-group">
                     {this.renderPosts()}
